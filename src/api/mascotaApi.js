@@ -77,7 +77,6 @@ router.get("/mascotas/getById/:id", async (req, res) => {
 });
 
 router.post("/mascotas/mascotaPerdida/:id", async (req, res) => {
-  console.log(req);
 
   console.log(req.body);
   Mascota.update(
@@ -97,7 +96,6 @@ router.post("/mascotas/mascotaPerdida/:id", async (req, res) => {
 
 router.post("/mascotas/mascotaPerdidaNewLocation/:id", async (req, res) => {
   console.log(req.body);
-  console.log(req);
 
   let lugarEncontrada = req.body.lugarEncontrado.join(",");
 
@@ -120,7 +118,6 @@ router.post("/mascotas/mascotaPerdidaNewLocation/:id", async (req, res) => {
 
 router.get("/mascotas/mascotaEncontrada", async (req, res) => {
   console.log(req.body);
-  console.log(req);
 
   MascotaEncontrada.findAll({
     where: {
@@ -142,7 +139,6 @@ router.get("/mascotas/mascotaEncontrada", async (req, res) => {
 
 router.post("/mascotas/nuevaMascotaPerdida", async (req, res) => {
   console.log(req.body);
-  console.log(req);
 
   await Mascota.create({
     nombre: "",
@@ -166,7 +162,6 @@ router.post(
   async (req, res) => {
     console.log(req.body);
     console.log(req.headers);
-    console.log(req);
 
     Mascota.update(
       {
@@ -193,7 +188,6 @@ router.post("/mascotas/borrarMascota/:id", async (req, res) => {
 });
 
 router.post("/mascotas/editarMascota/:id", async (req, res) => {
-  console.log(req);
 
   console.log("req.body", req.body);
   let sent = req.body.body.formData;
@@ -235,8 +229,6 @@ router.get("/mascotas/getMyPets/:email", async (req, res) => {
 });
 
 router.get("/mascotas/mascotasPerdidas", async (req, res) => {
-  console.log(req);
-
   console.log("este", req.headers.distanceslider);
   const mascotasCercanas = [];
   await Mascota.findAll({
@@ -285,7 +277,6 @@ router.get("/mascotas/mascotasPerdidas", async (req, res) => {
 
 router.post("/mascotas/adopcion/:id", async (req, res) => {
   console.log(req.body);
-  console.log(req);
 
   if (req.body.adoptar === true) {
     Mascota.update(
@@ -312,7 +303,6 @@ router.post("/mascotas/adopcion/:id", async (req, res) => {
   res.status(200).send("success");
 });
 router.get("/mascotas/mascotasEnAdopcion", async (req, res) => {
-  console.log(req);
 
   const mascotasCercanas = [];
   Mascota.findAll({
