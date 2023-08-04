@@ -73,11 +73,10 @@ router.get("/mascotas/getById/:id", async (req, res) => {
       return res.status(200).send({ data: mascotas });
     }
   ); */
-  return res.status(200).send({holamanola:'CONECTADO'})
+  return res.status(200).send({ holamanola: "CONECTADO" });
 });
 
 router.post("/mascotas/mascotaPerdida/:id", async (req, res) => {
-
   console.log(req.body);
   Mascota.update(
     {
@@ -188,7 +187,6 @@ router.post("/mascotas/borrarMascota/:id", async (req, res) => {
 });
 
 router.post("/mascotas/editarMascota/:id", async (req, res) => {
-
   console.log("req.body", req.body);
   let sent = req.body.body.formData;
   await Mascota.update(
@@ -213,8 +211,6 @@ router.post("/mascotas/editarMascota/:id", async (req, res) => {
 // NEW DESIGN
 
 router.get("/mascotas/getMyPets/:email", async (req, res) => {
-  console.log(req);
-
   console.log(req.params.email);
   await Mascota.findAll({
     where: {
@@ -223,6 +219,7 @@ router.get("/mascotas/getMyPets/:email", async (req, res) => {
     },
   }).then(
     await function (mascotas) {
+      console.log('user Pets',mascotas)
       return res.status(200).send({ data: mascotas });
     }
   );
@@ -303,7 +300,6 @@ router.post("/mascotas/adopcion/:id", async (req, res) => {
   res.status(200).send("success");
 });
 router.get("/mascotas/mascotasEnAdopcion", async (req, res) => {
-
   const mascotasCercanas = [];
   Mascota.findAll({
     where: { status: 4 },
