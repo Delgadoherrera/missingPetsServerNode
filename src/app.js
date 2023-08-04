@@ -4,7 +4,7 @@ const cors = require("cors");
 const app = express();
 
 const { expressjwt: jwt } = require("express-jwt");
-const jwks = require('jwks-rsa');
+const jwks = require("jwks-rsa");
 const bodyParser = require("body-parser");
 const db = require("./database/models");
 const Mensaje = db.Mensaje;
@@ -27,11 +27,11 @@ var jwtCheck = jwt({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: 'https://dev-xxqnbow4.us.auth0.com/.well-known/jwks.json'
+    jwksUri: "https://dev-xxqnbow4.us.auth0.com/.well-known/jwks.json",
   }),
-  audience: 'https://missingpets.art/mascotas/mascotasPerdidas',
-  issuer: 'https://dev-xxqnbow4.us.auth0.com/',
-  algorithms: ['RS256']
+  audience: "https://missingpets.art/mascotas/mascotasPerdidas",
+  issuer: "https://dev-xxqnbow4.us.auth0.com/",
+  algorithms: ["RS256"],
 });
 
 app.use(bodyParser.json({ limit: "50mb" }));
@@ -51,7 +51,11 @@ app.use(express.json());
  */
 
 server.listen(4000);
-app.use(cors());
+app.use(
+  cors({
+    allowedHeaders: ["x-access-token"],
+  })
+);
 app.use("/", userApi);
 app.use("/", /* auth */ mascotaApi);
 app.use("/", mensajesApi);
