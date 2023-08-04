@@ -62,7 +62,7 @@ router.post("/mascota/register", (req, res) => {
 });
 
 router.get("/mascotas/getById/:id", async (req, res) => {
-  console.log(req);
+  /*   console.log(req);
   await Mascota.findAll({
     where: {
       idHumano: req.params.id,
@@ -72,7 +72,8 @@ router.get("/mascotas/getById/:id", async (req, res) => {
     await function (mascotas) {
       return res.status(200).send({ data: mascotas });
     }
-  );
+  ); */
+  return res.status(200).send({holamanola:'CONECTADO'})
 });
 
 router.post("/mascotas/mascotaPerdida/:id", async (req, res) => {
@@ -167,7 +168,6 @@ router.post(
     console.log(req.headers);
     console.log(req);
 
-
     Mascota.update(
       {
         status: 0,
@@ -237,7 +237,7 @@ router.get("/mascotas/getMyPets/:email", async (req, res) => {
 router.get("/mascotas/mascotasPerdidas", async (req, res) => {
   console.log(req);
 
-  console.log('este',req.headers.distanceslider)
+  console.log("este", req.headers.distanceslider);
   const mascotasCercanas = [];
   await Mascota.findAll({
     where: { status: { [Op.in]: [1, 3] } },
@@ -261,7 +261,11 @@ router.get("/mascotas/mascotasPerdidas", async (req, res) => {
 
           /* console.log('distance', distance) */
         });
-        console.log("MASCOTAS ENCONTRADAS: ", mascotasCercanas.length, mascotasCercanas);
+        console.log(
+          "MASCOTAS ENCONTRADAS: ",
+          mascotasCercanas.length,
+          mascotasCercanas
+        );
         if (mascotasCercanas.length > 0) {
           return res.status(200).send({ data: mascotasCercanas });
         } else if (mascotasCercanas.length < 1) {
