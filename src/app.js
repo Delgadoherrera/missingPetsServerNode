@@ -3,8 +3,8 @@ const path = require("path");
 const cors = require("cors");
 const app = express();
 
-const { expressjwt: jwt } = require("express-jwt");
-const jwks = require("jwks-rsa");
+const  { expressjwt: jwt } = require("express-jwt");
+const jwks = require('jwks-rsa');
 const bodyParser = require("body-parser");
 const db = require("./database/models");
 const Mensaje = db.Mensaje;
@@ -21,24 +21,24 @@ const session = require("express-session");
 const userApi = require("./api/userApi");
 const mascotaApi = require("./api/mascotaApi");
 const mensajesApi = require("./api/mensajesApi");
-
 var jwtCheck = jwt({
   secret: jwks.expressJwtSecret({
-    cache: true,
-    rateLimit: true,
-    jwksRequestsPerMinute: 5,
-    jwksUri: "https://dev-xxqnbow4.us.auth0.com/.well-known/jwks.json",
-  }),
-  audience: "https://missingpets.art/mascotas/mascotasPerdidas",
-  issuer: "https://dev-xxqnbow4.us.auth0.com/",
-  algorithms: ["RS256"],
+      cache: true,
+      rateLimit: true,
+      jwksRequestsPerMinute: 5,
+      jwksUri: 'https://dev-xxqnbow4.us.auth0.com/.well-known/jwks.json'
+}),
+audience: 'https://missingpets.art/mascotas/mascotasPerdidas',
+issuer: 'https://dev-xxqnbow4.us.auth0.com/',
+algorithms: ['RS256']
 });
-
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
-/* app.use(jwtCheck); */
+/* app.use(jwtCheck);
+ */
 
-app.use(express.static("public"));
+
+app.use(express.static("public"));s
 app.use(express.static(path.join(__dirname, "../public")));
 app.use(express.json());
 /* app.use(
@@ -49,13 +49,8 @@ app.use(express.json());
   })
 );
  */
-
 server.listen(4000);
-app.use(
-  cors({
-    allowedHeaders: ["x-access-token"],
-  })
-);
+app.use(cors({ origin: "*" }));
 app.use("/", userApi);
 app.use("/", /* auth */ mascotaApi);
 app.use("/", mensajesApi);
