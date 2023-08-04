@@ -51,7 +51,7 @@ app.use(express.json());
  */
 
 server.listen(4000);
-app.use(cors({ origin: "*" }));
+app.use(cors());
 app.use("/", userApi);
 app.use("/", /* auth */ mascotaApi);
 app.use("/", mensajesApi);
