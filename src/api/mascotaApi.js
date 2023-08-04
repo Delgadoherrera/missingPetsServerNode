@@ -62,7 +62,7 @@ router.post("/mascota/register", (req, res) => {
 });
 
 router.get("/mascotas/getById/:id", async (req, res) => {
-  console.log(req.body);
+  console.log(req);
   await Mascota.findAll({
     where: {
       idHumano: req.params.id,
