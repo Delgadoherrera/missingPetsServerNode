@@ -45,7 +45,7 @@ const distanciaCoords = (lat1, lon1, lat2, lon2) => {
 
 router.post("/mascota/register", (req, res) => {
   console.log(req.body);
-  let sent = req.body.body.formData;
+  const sent = req.body.formData;
   Mascota.create({
     nombre: sent.nombre,
     emailMascota: req.body.body.user,
@@ -219,7 +219,7 @@ router.get("/mascotas/getMyPets/:email", async (req, res) => {
     },
   }).then(
     await function (mascotas) {
-      console.log('user Pets',mascotas)
+      console.log("user Pets", mascotas);
       return res.status(200).send({ data: mascotas });
     }
   );
