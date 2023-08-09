@@ -44,20 +44,18 @@ const distanciaCoords = (lat1, lon1, lat2, lon2) => {
 };
 
 router.post("/mascota/register", (req, res) => {
-  console.log("req.body", req.body);
-  console.log("req.body.user", req.body.user);
-
+  console.log(req.body);
   const sent = req.body.formData;
   Mascota.create({
-    nombre: req.body.user,
-    emailMascota: req.body.body.user,
+    nombre: req.body.nombre,
+    emailMascota: req.body.user,
     colorPrimario: sent.colorPrimario,
     colorSecundario: sent.colorSecundario,
     pesoAproximado: sent.peso,
     status: 0,
     tipoMascota: sent.tipoMascota,
     descripcion: sent.descripcion,
-    fotoMascota: req.body.file,
+    fotoMascota: req.body.body.file,
     geoAdress: "No está perdida",
   });
   res.status(200).send();
