@@ -47,7 +47,7 @@ router.post("/mascota/register", (req, res) => {
   console.log(req.body);
   const sent = req.body.formData;
   Mascota.create({
-    nombre: sent.nombre,
+    nombre: req.body.user,
     emailMascota: req.body.body.user,
     colorPrimario: sent.colorPrimario,
     colorSecundario: sent.colorSecundario,
@@ -55,7 +55,7 @@ router.post("/mascota/register", (req, res) => {
     status: 0,
     tipoMascota: sent.tipoMascota,
     descripcion: sent.descripcion,
-    fotoMascota: req.body.body.file,
+    fotoMascota: req.body.file,
     geoAdress: "No está perdida",
   });
   res.status(200).send();
