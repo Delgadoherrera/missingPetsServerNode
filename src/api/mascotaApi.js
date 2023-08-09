@@ -45,6 +45,8 @@ const distanciaCoords = (lat1, lon1, lat2, lon2) => {
 
 router.post("/mascota/register", (req, res) => {
   console.log("req.body", req.body);
+  console.log("req.body.user", req.body.user);
+
   const sent = req.body.formData;
   Mascota.create({
     nombre: req.body.user,
