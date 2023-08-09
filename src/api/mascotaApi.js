@@ -47,7 +47,7 @@ router.post("/mascota/register", (req, res) => {
   console.log(req.body);
   const sent = req.body.formData;
   Mascota.create({
-    nombre: req.body.nombre,
+    nombre: sent.nombre,
     emailMascota: req.body.user,
     colorPrimario: sent.colorPrimario,
     colorSecundario: sent.colorSecundario,
