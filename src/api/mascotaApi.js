@@ -81,8 +81,8 @@ router.post("/mascotas/mascotaPerdida/:id", async (req, res) => {
   console.log('COORDS',coords)
   Mascota.update(
     {
-      latPerdida: req.body.body.coords[0],
-      lngPerdida: req.body.body.coords[1],
+      latPerdida: req.body.coords[0],
+      lngPerdida: req.body.coords[1],
       geoAdress: "lugarEncontrada",
 
       status: 1,
