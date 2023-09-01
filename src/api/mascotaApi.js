@@ -188,7 +188,7 @@ router.post("/mascotas/borrarMascota/:id", async (req, res) => {
 
 router.post("/mascotas/editarMascota/:id", async (req, res) => {
   console.log("req.body", req.body);
-  let sent = req.body.body.formData;
+  let sent = req.body.formData;
   await Mascota.update(
     {
       nombre: sent.nombre,
