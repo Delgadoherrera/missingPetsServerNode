@@ -226,7 +226,7 @@ router.get("/mascotas/getMyPets/:email", async (req, res) => {
 });
 
 router.get("/mascotas/mascotasPerdidas", async (req, res) => {
-  console.log("este", req.headers.distanceslider);
+  console.log("distance", req.headers.distanceslider);
   const mascotasCercanas = [];
   await Mascota.findAll({
     where: { status: { [Op.in]: [1, 3] } },
