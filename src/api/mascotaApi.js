@@ -338,6 +338,7 @@ router.get("/mascotas/mascotasEnAdopcion", async (req, res) => {
 });
 
 router.post("/mascotas/startAdoption/:id", async (req, res) => {
+  console.log('req.param', req.params.id)
   await Mascota.update(
     {
       status: 4,
