@@ -336,6 +336,22 @@ router.get("/mascotas/mascotasEnAdopcion", async (req, res) => {
       console.log("error catch" + error);
     });
 });
+
+router.post("/mascotas/startAdoption/:id", async (req, res) => {
+  await Mascota.update(
+    {
+      status: 4,
+    },
+    {
+      where: {
+        idMascota: req.params.id,
+      },
+    }
+  );
+
+  res.status(200).send("success");
+});
+
 module.exports = router;
 
 //mascota status 4 = en adopcion
