@@ -349,7 +349,20 @@ router.post("/mascotas/startAdoption/:id", async (req, res) => {
       },
     }
   );
-
+  res.status(200).send("success");
+});
+router.post("/mascotas/quitAdoption/:id", async (req, res) => {
+  console.log('req.param', req.params.id)
+  await Mascota.update(
+    {
+      status: 0,
+    },
+    {
+      where: {
+        idMascota: req.params.id,
+      },
+    }
+  );
   res.status(200).send("success");
 });
 
