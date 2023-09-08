@@ -300,6 +300,7 @@ router.post("/mascotas/adopcion/:id", async (req, res) => {
   res.status(200).send("success");
 });
 router.get("/mascotas/mascotasEnAdopcion", async (req, res) => {
+  console.log("mascotas en adopcion:::", req.body, "headers:", req.headers);
   const mascotasCercanas = [];
   Mascota.findAll({
     where: { status: 4 },
