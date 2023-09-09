@@ -254,15 +254,15 @@ router.get("/mascotas/mascotasPerdidas", async (req, res) => {
         console.log(
           "MASCOTAS ENCONTRADAS: ",
           mascotasCercanas.length,
-          mascotasCercanas
-        );
+/*           mascotasCercanas
+ */        );
         if (mascotasCercanas.length > 0) {
           return res.status(200).send({ data: mascotasCercanas });
         } else if (mascotasCercanas.length < 1) {
           Mascota.findAll({
             where: { status: { [Op.in]: [1, 3] } },
           }).then(function (mascotas) {
-            console.log("MASCOTAS NO ENCCONTRADA: ", mascotasCercanas);
+            console.log("MASCOTAS NO ENCCONTRADA: ", /* mascotasCercanas */);
             return res.status(200).send({ data: mascotasCercanas });
           });
         }
