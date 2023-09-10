@@ -3,8 +3,8 @@ const path = require("path");
 const cors = require("cors");
 const app = express();
 
-const  { expressjwt: jwt } = require("express-jwt");
-const jwks = require('jwks-rsa');
+const { expressjwt: jwt } = require("express-jwt");
+const jwks = require("jwks-rsa");
 const bodyParser = require("body-parser");
 const db = require("./database/models");
 const Mensaje = db.Mensaje;
@@ -23,20 +23,19 @@ const mascotaApi = require("./api/mascotaApi");
 const mensajesApi = require("./api/mensajesApi");
 var jwtCheck = jwt({
   secret: jwks.expressJwtSecret({
-      cache: true,
-      rateLimit: true,
-      jwksRequestsPerMinute: 5,
-      jwksUri: 'https://dev-xxqnbow4.us.auth0.com/.well-known/jwks.json'
-}),
-audience: 'https://missingpets.art/mascotas/mascotasPerdidas',
-issuer: 'https://dev-xxqnbow4.us.auth0.com/',
-algorithms: ['RS256']
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: "https://dev-xxqnbow4.us.auth0.com/.well-known/jwks.json",
+  }),
+  audience: "https://missingpets.art/mascotas/mascotasPerdidas",
+  issuer: "https://dev-xxqnbow4.us.auth0.com/",
+  algorithms: ["RS256"],
 });
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 /* app.use(jwtCheck);
  */
-
 
 app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "../public")));
@@ -57,7 +56,14 @@ app.use("/", mensajesApi);
 
 io.on("connection", (socket) => {
   socket.on("message", (body, idEmisor, idReceptor) => {
-    console.log("DATOS DESDE APP", body, idEmisor, idReceptor);
+    console.log(
+      "DATOS DESDE APP",
+      body,
+      "idEmisor",
+      idEmisor,
+      "idReceptor",
+      idReceptor
+    );
     socket.broadcast.emit("message", {
       body,
       from: socket.id.slice(8),
