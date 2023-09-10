@@ -74,8 +74,8 @@ io.on("connection", (socket) => {
 
     Mensaje.create({
       mensaje: body,
-      emailEmisor: idEmisor,
-      emailReceptor: idReceptor,
+      emailEmisor: body.idEmisor,
+      emailReceptor: body.idReceptor,
       fechaMensaje: fechaMensaje,
     });
   });
