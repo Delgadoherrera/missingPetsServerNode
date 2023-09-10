@@ -73,7 +73,7 @@ io.on("connection", (socket) => {
     let fechaMensaje = nowDate.toLocaleDateString("en-ZA");
 
     Mensaje.create({
-      mensaje: body,
+      mensaje: body.body,
       emailEmisor: body.idEmisor,
       emailReceptor: body.idReceptor,
       fechaMensaje: fechaMensaje,
