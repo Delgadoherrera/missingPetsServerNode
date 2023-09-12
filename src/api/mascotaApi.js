@@ -1,12 +1,10 @@
 const express = require("express");
 const multer = require("multer");
-const cors = require("cors");
 const router = express.Router();
 const path = require("path");
 const db = require("../database/models");
 const Mascota = db.Mascota;
 const MascotaEncontrada = db.MascotaEncontrada;
-const jwt = require("jsonwebtoken");
 var Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
@@ -44,6 +42,7 @@ const distanciaCoords = (lat1, lon1, lat2, lon2) => {
 };
 
 router.post("/mascota/register", (req, res) => {
+  console.log('MASCOTA REGISTER REQ.BODY', req.body)
   const sent = req.body.formData;
   Mascota.create({
     nombre: sent.nombre,
