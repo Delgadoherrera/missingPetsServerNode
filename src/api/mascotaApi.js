@@ -44,7 +44,6 @@ const distanciaCoords = (lat1, lon1, lat2, lon2) => {
 };
 
 router.post("/mascota/register", (req, res) => {
-  console.log(req.body);
   const sent = req.body.formData;
   Mascota.create({
     nombre: sent.nombre,
@@ -77,7 +76,6 @@ router.get("/mascotas/getById/:id", async (req, res) => {
 });
 
 router.post("/mascotas/mascotaPerdida/:id", async (req, res) => {
-  console.log(req.body);
   Mascota.update(
     {
       latPerdida: req.body.coords[0],
@@ -160,7 +158,6 @@ router.post(
   upload.single("file"),
   async (req, res) => {
     console.log(req.body);
-    console.log(req.headers);
 
     Mascota.update(
       {
@@ -226,8 +223,6 @@ router.get("/mascotas/getMyPets/:email", async (req, res) => {
 });
 
 router.get("/mascotas/mascotasPerdidas", async (req, res) => {
-  console.log("REQSASSSSS", req.body, req.headers);
-  console.log("distance", req.headers.distanceslider);
   const mascotasCercanas = [];
   await Mascota.findAll({
     where: { status: { [Op.in]: [1, 3] } },
@@ -301,7 +296,6 @@ router.post("/mascotas/adopcion/:id", async (req, res) => {
   res.status(200).send("success");
 });
 router.get("/mascotas/mascotasEnAdopcion", async (req, res) => {
-  console.log("mascotas en adopcion:::", req.body, "headers:", req.headers);
   const mascotasCercanas = [];
   Mascota.findAll({
     where: { status: 4 },
