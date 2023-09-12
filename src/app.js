@@ -14,17 +14,9 @@ const io = require("socket.io")(server, {
     origin: "*",
   },
 });
-const corsOptions = {
-  origin: "*", // o el origen que desees permitir
-  methods: "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-  allowedHeaders: "*", // Agrega cualquier encabezado necesario
-};
-const auth = require("./middlewares/auth");
-
-const session = require("express-session");
 const userApi = require("./api/userApi");
 const mascotaApi = require("./api/mascotaApi");
-const mensajesApi = require("./api/mensajesApi");
+const mensajesApi = require("./api/mensajesApi"); 
 var jwtCheck = jwt({
   secret: jwks.expressJwtSecret({
     cache: true,
@@ -53,7 +45,7 @@ app.use(express.json());
 );
  */
 server.listen(4000);
-app.use(cors(corsOptions));
+app.use(cors());
 app.use("/", userApi);
 app.use("/", /* auth */ mascotaApi);
 app.use("/", mensajesApi);
