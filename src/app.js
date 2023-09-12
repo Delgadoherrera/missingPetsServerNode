@@ -15,9 +15,10 @@ const io = require("socket.io")(server, {
   },
 });
 const corsOptions = {
-  origin: "https://localhost", // Especifica el origen que deseas permitir
+  origin: "*", // Especifica el origen que deseas permitir
   methods: "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-  allowedHeaders: "*", // Puedes personalizar los encabezados permitidos si es necesario
+  allowedHeaders: "*", // Agrega cualquier encabezado necesario, incluido "Content-Type"
+  exposedHeaders: "*", // Expone el encabezado necesario para las descargas de archivos
 };
 
 app.use(cors(corsOptions));
