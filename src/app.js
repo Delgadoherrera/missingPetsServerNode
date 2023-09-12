@@ -14,14 +14,14 @@ const io = require("socket.io")(server, {
     origin: "*",
   },
 });
-const corsOptions = {
-  origin: "*", // Especifica el origen que deseas permitir
-  methods: "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-  allowedHeaders: "*", // Agrega cualquier encabezado necesario, incluido "Content-Type"
-  exposedHeaders: "*", // Expone el encabezado necesario para las descargas de archivos
-};
-
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: "https://localhost",
+    methods: "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+    allowedHeaders: "*",
+    exposedHeaders: "*",
+  })
+);
 const userApi = require("./api/userApi");
 const mascotaApi = require("./api/mascotaApi");
 const mensajesApi = require("./api/mensajesApi");
