@@ -9,6 +9,9 @@ const bodyParser = require("body-parser");
 const db = require("./database/models");
 const Mensaje = db.Mensaje;
 const server = require("http").createServer(app);
+const userApi = require("./api/userApi");
+const mascotaApi = require("./api/mascotaApi");
+const mensajesApi = require("./api/mensajesApi");
 const io = require("socket.io")(server, {
   cors: {
     origin: "*",
@@ -22,39 +25,15 @@ app.use(
     exposedHeaders: "*",
   })
 );
-const userApi = require("./api/userApi");
-const mascotaApi = require("./api/mascotaApi");
-const mensajesApi = require("./api/mensajesApi");
-var jwtCheck = jwt({
-  secret: jwks.expressJwtSecret({
-    cache: true,
-    rateLimit: true,
-    jwksRequestsPerMinute: 5,
-    jwksUri: "https://dev-xxqnbow4.us.auth0.com/.well-known/jwks.json",
-  }),
-  audience: "https://missingpets.art/mascotas/mascotasPerdidas",
-  issuer: "https://dev-xxqnbow4.us.auth0.com/",
-  algorithms: ["RS256"],
-});
+
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
-/* app.use(jwtCheck);
- */
-
 app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "../public")));
 app.use(express.json());
-/* app.use(
-  session({
-    secret: "missingPetsssss",
-    resave: true,
-    saveUninitialized: true,
-  })
-);
- */
 server.listen(4000);
 app.use("/", userApi);
-app.use("/", /* auth */ mascotaApi);
+app.use("/", mascotaApi);
 app.use("/", mensajesApi);
 
 io.on("connection", (socket) => {

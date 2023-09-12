@@ -7,6 +7,7 @@ const Mascota = db.Mascota;
 const MascotaEncontrada = db.MascotaEncontrada;
 var Sequelize = require("sequelize");
 const Op = Sequelize.Op;
+const cors = require("cors");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -40,9 +41,15 @@ const distanciaCoords = (lat1, lon1, lat2, lon2) => {
   let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   return radioTierra * c;
 };
+const corsOptions = {
+  origin: "https://localhost",
+  methods: "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+  allowedHeaders: "*",
+  exposedHeaders: "*",
+};
 
-router.post("/mascota/register", (req, res) => {
-  console.log('MASCOTA REGISTER REQ.BODY', req.body)
+router.post("/mascota/register", cors(corsOptions), (req, res) => {
+  console.log("MASCOTA REGISTER REQ.BODY", req.body);
   const sent = req.body.formData;
   Mascota.create({
     nombre: sent.nombre,
@@ -247,16 +254,17 @@ router.get("/mascotas/mascotasPerdidas", async (req, res) => {
         });
         console.log(
           "MASCOTAS ENCONTRADAS: ",
-          mascotasCercanas.length,
-/*           mascotasCercanas
- */        );
+          mascotasCercanas.length
+          /*           mascotasCercanas
+           */
+        );
         if (mascotasCercanas.length > 0) {
           return res.status(200).send({ data: mascotasCercanas });
         } else if (mascotasCercanas.length < 1) {
           Mascota.findAll({
             where: { status: { [Op.in]: [1, 3] } },
           }).then(function (mascotas) {
-            console.log("MASCOTAS NO ENCCONTRADA: ", /* mascotasCercanas */);
+            console.log("MASCOTAS NO ENCCONTRADA: " /* mascotasCercanas */);
             return res.status(200).send({ data: mascotasCercanas });
           });
         }
