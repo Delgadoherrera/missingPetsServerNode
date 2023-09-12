@@ -14,9 +14,16 @@ const io = require("socket.io")(server, {
     origin: "*",
   },
 });
+const corsOptions = {
+  origin: "https://localhost", // Especifica el origen que deseas permitir
+  methods: "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+  allowedHeaders: "*", // Puedes personalizar los encabezados permitidos si es necesario
+};
+
+app.use(cors(corsOptions));
 const userApi = require("./api/userApi");
 const mascotaApi = require("./api/mascotaApi");
-const mensajesApi = require("./api/mensajesApi"); 
+const mensajesApi = require("./api/mensajesApi");
 var jwtCheck = jwt({
   secret: jwks.expressJwtSecret({
     cache: true,
@@ -45,7 +52,6 @@ app.use(express.json());
 );
  */
 server.listen(4000);
-app.use(cors());
 app.use("/", userApi);
 app.use("/", /* auth */ mascotaApi);
 app.use("/", mensajesApi);
