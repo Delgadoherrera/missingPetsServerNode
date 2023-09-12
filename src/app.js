@@ -17,7 +17,7 @@ const io = require("socket.io")(server, {
 const corsOptions = {
   origin: "*", // o el origen que desees permitir
   methods: "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-  allowedHeaders: "Content-Type,Authorization", // Agrega cualquier encabezado necesario
+  allowedHeaders: "*", // Agrega cualquier encabezado necesario
 };
 const auth = require("./middlewares/auth");
 
