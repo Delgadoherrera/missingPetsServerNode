@@ -18,12 +18,7 @@ const io = require("socket.io")(server, {
   },
 });
 app.use(
-  cors({
-    origin: "https://localhost",
-    methods: "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-    allowedHeaders: "*",
-    exposedHeaders: "*",
-  })
+  cors()
 );
 
 app.use(bodyParser.json({ limit: "50mb" }));
