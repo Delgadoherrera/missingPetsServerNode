@@ -55,7 +55,7 @@ router.post("/mascota/register", upload.single("file"), async (req, res) => {
     status: 0,
     tipoMascota: sent.tipoMascota,
     descripcion: sent.descripcionMascota,
-    fotoMascota: req.body.file.base64Data,
+    fotoMascota: req.body.imagen,
   });
   res.status(200).send();
 });
