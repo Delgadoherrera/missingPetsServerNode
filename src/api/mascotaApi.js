@@ -52,7 +52,7 @@ router.post("/mascota/register", (req, res) => {
     status: 0,
     tipoMascota: sent.tipoMascota,
     descripcion: sent.descripcion,
-    fotoMascota: req.body.file,
+    fotoMascota: req.body.imagen,
     geoAdress: "No está perdida",
   });
   res.status(200).send();
