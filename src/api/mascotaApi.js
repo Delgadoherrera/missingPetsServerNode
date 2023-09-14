@@ -7,7 +7,6 @@ const Mascota = db.Mascota;
 const MascotaEncontrada = db.MascotaEncontrada;
 var Sequelize = require("sequelize");
 const Op = Sequelize.Op;
-const cors = require("cors");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -41,14 +40,7 @@ const distanciaCoords = (lat1, lon1, lat2, lon2) => {
   let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   return radioTierra * c;
 };
-const corsOptions = {
-  origin: "https://localhost",
-  methods: "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-  allowedHeaders: "*",
-  exposedHeaders: "*",
-};
-
-router.post("/mascota/register", cors(corsOptions), (req, res) => {
+router.post("/mascota/register", (req, res) => {
   console.log("MASCOTA REGISTER REQ.BODY", req.body);
   const sent = req.body.formData;
   Mascota.create({

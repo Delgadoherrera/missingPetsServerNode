@@ -1,6 +1,5 @@
 const express = require("express");
 const multer = require("multer");
-const cors = require("cors");
 const router = express.Router();
 const path = require("path");
 const db = require("../database/models");
