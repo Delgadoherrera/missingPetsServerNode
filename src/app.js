@@ -29,7 +29,7 @@ app.use("/", mascotaApi);
 app.use("/", mensajesApi);
 
 io.on("connection", (socket) => {
-  socket.on("message", (body, idEmisor, idReceptor) => {
+  socket.on("message", (body, idEmisor, idReceptor,nombreEmisor) => {
     console.log("DATOS DESDE APP", body);
     socket.broadcast.emit("message", {
       body,
@@ -44,6 +44,7 @@ io.on("connection", (socket) => {
       emailEmisor: body.emailEmisor,
       emailReceptor: body.idReceptor,
       fechaMensaje: fechaMensaje,
+      nombreEmisor: nombreEmisor
     });
   });
 });
