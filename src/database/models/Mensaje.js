@@ -18,6 +18,9 @@ module.exports = (sequelize, dataTypes) => {
         emailReceptor: {
             type: dataTypes.STRING
         },
+        nombreEmisor: {
+            type: dataTypes.STRING
+        },
     };
     let config = {
         tableName: 'mensajes',

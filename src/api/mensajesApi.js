@@ -42,7 +42,7 @@ router.post("/mensajes/nuevoMensaje/", async (req, res) => {
     emailEmisor: req.body.emisor,
     emailReceptor: req.body.receptor,
     fechaMensaje: req.body.date,
-    nombreEmisor: 'Luciano'
+    nombreEmisor: 'Lucianos'
   });
   res.status(200).send();
 });
