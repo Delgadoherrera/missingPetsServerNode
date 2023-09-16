@@ -36,6 +36,7 @@ const sequelize = new Sequelize("missingPets", "root", "nabuco12", {
 
 router.post("/mensajes/nuevoMensaje/", async (req, res) => {
   console.log(req.body);
+  console.log('emisor',req.body.nombreEmisor)
 
   await Mensaje.create({
     mensaje: req.body.msg,
