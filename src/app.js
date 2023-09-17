@@ -44,7 +44,7 @@ io.on("connection", (socket) => {
       emailEmisor: body.emailEmisor,
       emailReceptor: body.idReceptor,
       fechaMensaje: fechaMensaje,
-      nombreEmisor: nombreEmisor
+      nombreEmisor: body.nombreEmisor
     });
   });
 });
