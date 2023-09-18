@@ -20,7 +20,7 @@ app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "../public")));
 app.use(express.json());
 
-const PORT = 4000; // Cambia el puerto a 4000 para WebSocket
+const PORT = 3001; // Cambia el puerto a 4000 para WebSocket
 
 // Cambia 'server.listen(4000);' a 'http.createServer(app).listen(PORT);'
 http.createServer(app).listen(PORT);
