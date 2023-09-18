@@ -2,9 +2,6 @@ const express = require("express");
 const path = require("path");
 const cors = require("cors");
 const app = express();
-
-const { expressjwt: jwt } = require("express-jwt");
-const jwks = require("jwks-rsa");
 const bodyParser = require("body-parser");
 const db = require("./database/models");
 const Mensaje = db.Mensaje;
