@@ -47,7 +47,7 @@ io.on("connection", (socket) => {
 });
 
 /* const PORT = process.env.port */
-const PORT = 3001;
+const PORT = 3002;
 
 app.listen(PORT, () => {
   console.log("servidor ON sen puerto: ", PORT);
