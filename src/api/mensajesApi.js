@@ -58,7 +58,6 @@ const messageByReceptor2 =
 const reqForQuery2 = "  and a.emailReceptor =";
 
 router.get("/mensajes/getAllMyMsg/:id", async (req, res) => {
-  console.log('BUSCANDO TUS MASCOTAS')
   let id = req.params.id;
 
   await Mensaje.findAll({
