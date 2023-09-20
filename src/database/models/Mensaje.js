@@ -21,6 +21,9 @@ module.exports = (sequelize, dataTypes) => {
         nombreEmisor: {
             type: dataTypes.STRING
         },
+        fotoMascota: {
+            type: dataTypes.STRING
+        },
     };
     let config = {
         tableName: 'mensajes',
