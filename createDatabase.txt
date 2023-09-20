@@ -1,0 +1,43 @@
+CREATE DATABASE IF NOT EXISTS missingPets;
+
+-- Usar la base de datos missingPets
+USE missingPets;
+
+-- Crear la tabla fotosMascotas
+CREATE TABLE IF NOT EXISTS fotosMascotas (
+  id INT NOT NULL AUTO_INCREMENT,
+  idMascota INT NOT NULL,
+  fotoMascota LONGTEXT NOT NULL,
+  PRIMARY KEY (id)
+);
+
+-- Crear la tabla mascotas
+CREATE TABLE IF NOT EXISTS mascotas (
+  idMascota INT NOT NULL AUTO_INCREMENT,
+  emailMascota VARCHAR(50) NOT NULL,
+  nombre VARCHAR(255) NOT NULL,
+  colorPrimario VARCHAR(255) NOT NULL,
+  colorSecundario VARCHAR(255) NOT NULL,
+  descripcion TEXT NOT NULL,
+  pesoAproximado VARCHAR(255) NOT NULL,
+  tipoMascota VARCHAR(255) NOT NULL,
+  status TINYINT(1) NOT NULL,
+  fotoMascota LONGTEXT NOT NULL,
+  latPerdida DECIMAL(11,8) DEFAULT NULL,
+  lngPerdida DECIMAL(11,8) DEFAULT NULL,
+  lngEncontrada DECIMAL(11,8) DEFAULT NULL,
+  latEncontrada DECIMAL(11,8) DEFAULT NULL,
+  geoAdress VARCHAR(255) NOT NULL,
+  PRIMARY KEY (idMascota)
+);
+
+-- Crear la tabla mensajes
+CREATE TABLE IF NOT EXISTS mensajes (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  mensaje VARCHAR(3000) NOT NULL,
+  fechaMensaje DATE NOT NULL,
+  emailEmisor VARCHAR(50) NOT NULL,
+  emailReceptor VARCHAR(50) NOT NULL,
+  nombreEmisor VARCHAR(50) NOT NULL,
+  PRIMARY KEY (id)
+);

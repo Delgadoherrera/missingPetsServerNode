@@ -38,7 +38,8 @@ router.post("/mensajes/nuevoMensaje/", async (req, res) => {
   console.log(req.body);
   console.log('emisor',req.body.nombreEmisor)
   await Mensaje.create({
-    mensaje: req.body.msg,
+    mensaje: 'Hola, creo que encontre a tu mascota!, pongamonos en contacto!',
+    fotoMascota:req.body.fotoMascota,
     emailEmisor: req.body.emisor,
     emailReceptor: req.body.receptor,
     fechaMensaje: req.body.date,
