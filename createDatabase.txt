@@ -39,5 +39,6 @@ CREATE TABLE IF NOT EXISTS mensajes (
   emailEmisor VARCHAR(50) NOT NULL,
   emailReceptor VARCHAR(50) NOT NULL,
   nombreEmisor VARCHAR(50) NOT NULL,
+  fotoMascota LONGTEXT NOT NULL,
   PRIMARY KEY (id)
 );
