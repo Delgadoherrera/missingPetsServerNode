@@ -37,7 +37,7 @@ const sequelize = new Sequelize("missingPets", "root", "nabuco12", {
 router.post("/mensajes/nuevoMensaje/", async (req, res) => {
   console.log(req.body);
   await Mensaje.create({
-    mensaje: `Hola, creo que encontre a tu mascota!, pongamonos en contacto!`,
+    mensaje: req.body.msg,
     fotoMascota:req.body.fotoMascota,
     emailEmisor: req.body.emisor,
     emailReceptor: req.body.receptor,
