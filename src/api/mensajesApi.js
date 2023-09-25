@@ -113,10 +113,14 @@ router.get("/mensajes/getMessagesById/:id/:idEmisor", async (req, res) => {
 
 router.post("/mensajes/borrarConversacion/", async (req, res) => {
   console.log('req.body',req.body)
+  let id = req.params.idReceptor;
+  let idEmisor = req.params.idEmisor;
   await Mensaje.destroy({
     where: {
-      idEmisor: req.body.idEmisor,
-      idReceptor:req.body.idReceptor
+      [Op.or]: [
+        { emailReceptor: id, emailEmisor: idEmisor },
+        { emailReceptor: idEmisor, emailEmisor: id },
+      ],
     },
   });
 
