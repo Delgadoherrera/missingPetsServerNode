@@ -1,4 +1,5 @@
-CREATE DATABASE IF NOT EXISTS missingPets;
+DROP DATABASE IF EXISTS missingPets;
+CREATE DATABASE missingPets;
 
 -- Usar la base de datos missingPets
 USE missingPets;

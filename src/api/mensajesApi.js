@@ -110,4 +110,18 @@ router.get("/mensajes/getMessagesById/:id/:idEmisor", async (req, res) => {
   );
 });
 
+
+router.post("/mensajes/borrarConversacion/", async (req, res) => {
+  console.log('req.body',req.body)
+  await Mensaje.destroy({
+    where: {
+      idEmisor: req.body.idEmisor,
+      idReceptor:req.body.idReceptor
+    },
+  });
+
+  res.status(200).send("success");
+});
+
+
 module.exports = router;
