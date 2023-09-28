@@ -269,7 +269,7 @@ router.get("/mascotas/mascotasPerdidas", async (req, res) => {
 });
 
 router.post("/mascotas/adopcion/:id", async (req, res) => {
-  console.log(req.body);
+  console.log('MASCOTA A ADOPTAR',req.body);
 
   if (req.body.adoptar === true) {
     Mascota.update(
